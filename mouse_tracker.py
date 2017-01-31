@@ -9,12 +9,16 @@ class MouseTracker(PyMouseEvent):
 
     def move(self, x, y):
         position = (x, y)
-        mousePosition = 'X: {0[0]},  Y: {0[1]}\n'.format(position)
+        mousePosition = 'MM X: {0[0]},  Y: {0[1]}\n'.format(position)
         logTelemetry(mousePosition)
-        print(('X: {0[0]},  Y: {0[1]}').format(position))
+        print(('MM X: {0[0]},  Y: {0[1]}').format(position))
 
     def click(self, x, y, button, press):
         # TODO Track mouse click
+        position = (x, y)
+        mousePosition = 'MC X: {0[0]},  Y: {0[1]}\n'.format(position)
+        logTelemetry(mousePosition)
+        print(('MC X: {0[0]},  Y: {0[1]}').format(position))
 
 def logTelemetry(log):
     f = open(logFileName, 'a+')
