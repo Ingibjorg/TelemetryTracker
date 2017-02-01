@@ -135,8 +135,8 @@ class PyHooker:
 
         event = ''
         if wParam in self.event_types:
-            if msg[0].vkCode == 222 and wParam == win32con.WM_KEYDOWN and self.previous_keycode == 222:
-                # if key 222 (ä) is pressed twice, stop the recording
+            if msg[0].vkCode == 186 and wParam == win32con.WM_KEYDOWN and self.previous_keycode == 186:
+                # if key 186 (') is pressed twice, stop the recording
                 self.destruct()
 
             timestamp = self.current_milli_time()
