@@ -18,6 +18,8 @@ def handler_mouse(event):
     pos_y = event.pos_y
     if event.event_type == 'mouse_move':
         pts.append((pos_x, pos_y))
+    elif event.event_type == 'mouse_down_left':
+        pts.append((pos_x, pos_y))
     elif event.event_type[6:10] == 'down':
         clicks.append((pos_x, pos_y))
         num_clicks[event.event_type[11:]] += 1
@@ -83,13 +85,11 @@ def append_data_to_files():
 
     with open(filename_mouse, 'a', newline='') as f:
         writer = csv.DictWriter(f, pyhooker.MouseEvent._fields, delimiter=';')
-        # writer.writeheader()
         writer.writerows([evt._asdict() for evt in mouse_events])
         mouse_events = []
 
     with open(filename_keyboard, 'a', newline='') as f:
         writer = csv.DictWriter(f, pyhooker.KeyboardEvent._fields, delimiter=';')
-        # writer.writeheader()
         writer.writerows([evt._asdict() for evt in key_events])
         key_events = []
 
@@ -136,7 +136,7 @@ def init():
 
     print(userid)
     date_now = dt.datetime.now()
-    date_formatted = date_now.strftime('%Y%m%d-%H%M')
+    date_formatted = date_now.strftime('%d%m%Y-%H%M%S')
     foldername = foldername.format(userid=userid, date=date_formatted)
 
     if not os.path.exists(foldername):
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     mouse_events = []
     key_events = []
     userid = ''
-    
+
     foldername = 'data/{userid}/{date}'
     filename_mouse = '{foldername}/00_dump_mouse.csv'
     filename_keyboard = '{foldername}/00_dump_keyboard.csv'

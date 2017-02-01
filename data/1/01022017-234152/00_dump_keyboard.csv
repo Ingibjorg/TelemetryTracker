@@ -1,0 +1,14 @@
+event_type;key_code;key_code_readable;scan_code;alt_pressed;time
+key_up;13;Return;28;False;1485992512783
+key_down;65;A;30;False;1485992517519
+key_up;65;A;30;False;1485992517695
+key_down;65;A;30;False;1485992518088
+key_up;65;A;30;False;1485992518295
+key_down;65;A;30;False;1485992518703
+key_up;65;A;30;False;1485992518855
+key_down;65;A;30;False;1485992518943
+key_up;65;A;30;False;1485992519063
+key_down;65;A;30;False;1485992519151
+key_up;65;A;30;False;1485992519368
+key_up;65;A;30;False;1485992522902
+key_down;65;A;30;False;1485992523751
