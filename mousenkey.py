@@ -3,26 +3,13 @@ import time
 from collections import namedtuple
 import numpy as np
 import os
-# import pandas as pd  # slow
-# from pandas import DataFrame
 import pyhooker
 import ctypes
 import re
 import datetime as dt
 import csv
 
-# # used for pyinstaller
-# import six
-# import packaging
-# import packaging.version
-# import packaging.specifiers
-# import packaging.requirements
-# # /pyinstaller
-
 user32 = ctypes.windll.user32
-
-
-
 
 def handler_mouse(event):
     global pos_x, pos_y, clicks, pts
@@ -40,11 +27,9 @@ def handler_mouse(event):
         # if event.event_type[11:] == 'left':
     refresh_screen()
 
-
 def handler_keyboard(event):
     key_events.append(event)
     refresh_screen(True)
-
 
 def calculate_length_of_mouse_trail():
     global pts
@@ -53,10 +38,8 @@ def calculate_length_of_mouse_trail():
     total_length = np.sum(lengths)
     return total_length
 
-
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
-
 
 def save_results():
     global pts, clicks
@@ -69,7 +52,6 @@ def save_results():
     cls()
     print("Finished saving.")
     print("You may now close the window.")
-
 
 def init_file_structure():
     global key_events, mouse_events
@@ -96,19 +78,6 @@ def init_file_structure():
         writer.writerows([evt._asdict() for evt in key_events])
         key_events = []
 
-
-    # df_mouse = pd.DataFrame(data=list(mouse_events))
-    # mouse_events = deque()
-    # df_mouse.to_csv(filename_mouse, sep=';', index=False)
-    # df_mouse = None
-
-    # df_keyboard = pd.DataFrame(data=list(key_events))
-    # # key_events = deque()
-    # key_events = []
-    # df_keyboard.to_csv(filename_keyboard, sep=';', index=False)
-    # df_keyboard = None
-
-
 def append_data_to_files():
     global key_events, mouse_events
 
@@ -124,21 +93,6 @@ def append_data_to_files():
         writer.writerows([evt._asdict() for evt in key_events])
         key_events = []
 
-    # with open(filename_mouse, 'a') as f:
-    #     df_mouse = pd.DataFrame(data=list(mouse_events))
-    #     mouse_events = []
-    #     # mouse_events = deque()
-    #     df_mouse.to_csv(f, sep=';', index=False, header=False)
-    #     df_mouse = None
-
-    # with open(filename_keyboard, 'a') as f:
-    #     df_keyboard = pd.DataFrame(data=list(key_events))
-    #     key_events = []
-    #     # key_events = deque()
-    #     df_keyboard.to_csv(f, sep=';', index=False, header=False)
-    #     df_keyboard = None
-
-
 def save_data_to_file():
     global key_events, mouse_events
 
@@ -146,7 +100,6 @@ def save_data_to_file():
         append_data_to_files()
     else:
         init_file_structure()
-
 
 i = 49
 def refresh_screen(forced_refresh=False):
@@ -168,7 +121,6 @@ def refresh_screen(forced_refresh=False):
         if len(mouse_events) > 100:
             save_data_to_file()
 
-
 def determine_user_id():
     userid_raw = input("Enter user ID: ")
 
@@ -177,7 +129,6 @@ def determine_user_id():
     else:
         print("Only use the characters A-Za-z0-9_-")
         return determine_user_id()
-
 
 def init():
     global foldername, filename_mouse, filename_keyboard, filename_screensize
@@ -206,12 +157,8 @@ def init():
     pyHooker.set_handler_destruct(save_results)
     pyHooker.listen()
 
-
-
 if __name__ == "__main__":
     pts = []
-
-
     pos_x = 0
     pos_y = 0
     pts = []
@@ -219,12 +166,9 @@ if __name__ == "__main__":
     num_clicks = dict(left=0, middle=0, right=0, wheel=0)
     mouse_events = []
     key_events = []
-    # mouse_events = deque()
-    # key_events = deque()
     userid = ''
-
+    
     foldername = 'data/{userid}/{date}'
-
     filename_mouse = '{foldername}/00_dump_mouse.csv'
     filename_keyboard = '{foldername}/00_dump_keyboard.csv'
     filename_screensize = '{foldername}/00_screen.csv'

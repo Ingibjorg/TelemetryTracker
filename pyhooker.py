@@ -8,8 +8,6 @@ import win32gui
 import atexit
 from time import time
 
-
-
 class KBDLLHOOKSTRUCT(Structure):
     """
     see https://msdn.microsoft.com/en-us/library/windows/desktop/ms644967
