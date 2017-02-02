@@ -1,6 +1,9 @@
 # TelemetryTracker
 
-**This project requires Python 3.6 and depends on [PyUserInput](https://github.com/PyUserInput/PyUserInput)**
+**This project requires Python 3.6 and is an altered version of [Mouse-n-Key](https://github.com/pablotheissen/Mouse-n-Key)**
 
 ## Run
-`python mouse_tracker.py`
+`python mousenkey.py`
+
+## Quit
+Press ' two times
