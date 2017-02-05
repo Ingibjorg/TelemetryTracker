@@ -20,6 +20,8 @@ def handler_mouse(event):
         pts.append((pos_x, pos_y))
     elif event.event_type == 'mouse_down_left':
         pts.append((pos_x, pos_y))
+    elif event.event_type == 'mouse_down_right':
+        pts.append((pos_x, pos_y))
     elif event.event_type[6:10] == 'down':
         clicks.append((pos_x, pos_y))
         num_clicks[event.event_type[11:]] += 1
