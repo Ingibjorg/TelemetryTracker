@@ -1,0 +1,76 @@
+event_type;timestamp;decision
+dialogue;17:32:25;Enough excuses, Toad.
+dialogue;17:33:03;I don’t make the rules.
+dialogue;17:33:34;What do you want me to do?
+dialogue;17:33:54;I’m heading up.
+action;17:34:43;Door - Knock
+dialogue;17:35:20;Everyone calm down!
+dialogue;17:35:32;This is your last warning.
+action;17:36:04;Woodsman - Hold his head
+action;17:36:08;Woodsman - Hit his neck
+action;17:36:13;Woodsman - Throw on book shelfs
+move;17:36:19;S
+action;17:36:21;Woodsman - Kick his leg
+action;17:36:24;Woodsman - Hit his ear
+action;17:36:30;Woodsman - Throw him on table
+action;17:36:33;Woodsman - Hit
+action;17:36:36;Woodsman - Hit
+action;17:36:39;Woodsman - Grab bottle
+action;17:36:42;Woodsman - Hit with bottle
+move;17:36:48;S
+action;17:36:50;Woodsman - Attack
+action;17:36:54;Woodsman - Throw him on bed
+action;17:36:59;Woodsman - Hit his face
+action;17:37:01;Woodsman - Hit his face
+action;17:37:03;Woodsman - Hit his face
+action;17:37:16;A
+move;17:37:18;Q
+replay;17:37:29;replay
+action;17:41:53;Q
+move;17:41:56;A
+action;17:42:01;Woodsman - Hit his head with axe
+dialogue;17:42:21;Be nice, or I’ll make you wait outside.
+dialogue;17:42:40;What are you doing here?
+dialogue;17:42:47;Are you alright?
+dialogue;17:42:59;Are you hurt?
+dialogue;17:43:35;[Throw him out]
+dialogue;17:44:20;How’s your insurance?
+action;17:44:50;Woodsman - Strangle
+move;17:44:55;Q
+dialogue;17:45:49;What are you doing?
+action;17:46:25;Stop her
+dialogue;17:47:05;Make a joke…
+dialogue;17:47:43;Beautiful…
+dialogue;17:48:31;He hit you.
+action;17:49:14;[give her some money]
+dialogue;17:50:11;I clean up okay.
+action;17:52:11;Gate - Enter
+action;17:52:29;Door - Enter
+dialogue;17:52:45;Don’t make me come over there.
+dialogue;17:53:13;Out pretty late.
+dialogue;17:53:44;No. I can’t do that.
+action;17:54:41;Mailbox - Open
+action;17:54:55;Bigby's Nametag - Look At
+action;17:55:03;Woodland Directory - Use Nametag With
+action;17:55:14;Woodland Directory - Look At
+action;17:55:44;Elevator Button - Push
+dialogue;17:56:17;Haven’t seen her.
+action;17:57:34;Freezer - Open
+action;17:57:46;Regrigerator - Open
+action;17:57:59;Bluebeard Folder - Use
+action;17:58:15;Chinese Food - Look At
+action;17:58:26;Fan - Use
+action;17:58:41;Colin - Talk To
+action;17:58:48;Colin - Look At
+action;17:58:54;Colin - Use
+dialogue;17:59:08;C’mon, I’m tired.
+dialogue;18:00:09;I won’t.
+dialogue;18:00:43;I just want some rest.
+dialogue;18:00:56;Better to be feared...
+dialogue;18:01:45;Don’t need advice.
+dialogue;18:02:33;There was a girl…
+action;18:03:25;[Give Colin a Drink]
+action;18:04:08;Apartment Door - Open
+dialogue;18:04:35;What happened?
+action;18:05:42;Jacket - Grab
+dialogue;18:06:15;Just a girl.
