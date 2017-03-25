@@ -1,0 +1,74 @@
+event_type;timestamp;decision
+dialogue;19:27:59;I’m looking at a 3 foot toad.
+dialogue;19:28:37;...
+dialogue;19:29:03;What do you want me to do?
+dialogue;19:29:23;I’m heading up.
+action;19:30:07;Door - Kick
+action;19:30:11;Door - Kick
+dialogue;19:30:31;What’s going on here?
+dialogue;19:30:42;This is your last warning.
+action;19:31:13;Woodsman - Hold his head
+action;19:31:15;Woodsman - Hit his neck
+action;19:31:20;Woodsman - Throw on book shelfs
+move;19:31:31;S
+move;19:31:37;S
+move;19:31:40;A
+move;19:31:42;D
+move;19:31:43;S
+action;19:31:45;Woodsman - Grab him
+action;19:31:54;Woodsman - Throw on bed
+action;19:31:59;Woodsman - Woodsman - Hit his face
+action;19:32:00;Woodsman - Hit his face
+action;19:32:02;Woodsman - Hit his face
+move;19:32:16;A
+move;19:32:20;Q
+move;19:32:23;A
+action;19:32:26;Woodsman - Hit his head with axe
+dialogue;19:32:47;Be nice, or I’ll make you wait outside.
+dialogue;19:33:04;What are you doing here?
+dialogue;19:33:17;You need to leave.
+dialogue;19:33:32;Are you hurt?
+dialogue;19:34:10;[Throw him out]
+dialogue;19:34:54;Sorry about the car.
+action;19:35:24;Woodsman - Strangle
+action;19:35:29;Q
+dialogue;19:36:22;What are you doing?
+action;19:36:58;Stop her
+dialogue;19:37:37;Light her cigarette...
+dialogue;19:38:10;Beautiful...
+dialogue;19:38:56;This is about Fabletown.
+action;19:39:30;[give her some money]
+dialogue;19:40:27;I clean up okay.
+action;19:42:35;Plaque - Look At
+action;19:42:47;Gate - Enter
+action;19:42:58;Door - Enter
+dialogue;19:43:16;Come on out.
+dialogue;19:43:37;Out pretty late.
+dialogue;19:44:08;I’m staying out of it.
+action;19:45:06;Mailbox - Open
+action;19:45:09;Mailbox - Open
+action;19:45:30;Desk - Talk To
+action;19:45:43;Suit of Armor - Touch
+action;19:45:53;Suit of Armor - Look At
+action;19:46:02;Suit of Armor - Touch
+action;19:46:11;Desk - Look At
+action;19:46:26;Elevator Button - Push
+dialogue;19:46:56;Staying out of this.
+action;19:48:16;Refrigerator - Open
+action;19:48:23;Freezer - Open
+action;19:48:41;Bluebeard Folder - Use
+action;Chinese Food - Look At;19:48:57
+action;19:49:06;Fan - Use
+action;19:49:30;Colin - Talk To
+action;19:49:37;Colin - Use
+dialogue;19:49:50;There's only the one.
+dialogue;19:50:52;Don’t be dramatic.
+dialogue;19:51:23;I just want some rest.
+dialogue;19:51:33;Everyone hates me?
+dialogue;19:52:23;My job
+dialogue;19:53:14;There was a girl...
+dialogue;19:54:06;[Give Colin a Drink]
+action;19:54:50;Apartment Door - Open
+dialogue;19:55:14;What happened?
+action;19:56:20;Jacket - Grab
+dialogue;19:56:53;Just a girl.
