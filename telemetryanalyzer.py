@@ -1,5 +1,8 @@
+from collections import namedtuple
 import csv
 
+FilteredEvent = namedtuple('FilteredEvent', ['event_type', 'pos_x', 'pos_y', 'time'])
+DecisionEvent = namedtuple('DecisionEvent', ['event_type', 'decision', 'time'])
 DIALOGUE_ARRRAY = [
     ['I\'m looking at a 3 foot toad.', 'Enough excuses, Toad.', 'No harm done.', '...'],
     ['I don\'t make the rules.', 'Get it fixed.', 'Not my problem.', '...'],
@@ -84,14 +87,22 @@ def is_right_dialogue_button(pos_x, pos_y):
         return True
 
 def filter_csv():
-    with open(INPUT_CSV, 'rb') as csvfile, open(FILTERED_CSV, 'wb') as out:
-        READER = csv.reader(csvfile, delimiter=';', quotechar='|')
-        WRITER = csv.writer(out)
-        for row in READER:
-            if START_TIME < row[3]:
-                WRITER.writerow(row)
+    """Filter out timecodes before the actual start times"""
+    with open(INPUT_CSV, 'rb') as inputcsvfile, open(FILTERED_CSV, 'wb') as filter_out:
+        input_reader = csv.reader(inputcsvfile, delimiter=';', quotechar='|')
+        input_writer = csv.DictWriter(filter_out, FilteredEvent._fields, delimiter=';')
+        filtered_events = []
 
-def get_dialogue(counter, pos):
+        for input_row in input_reader:
+            if START_TIME < input_row[3]:
+                event = FilteredEvent(input_row[0], input_row[1], input_row[2], input_row[3])
+                filtered_events.append(event)
+                input_writer.writerows([evt._asdict() for evt in filtered_events])
+                filtered_events = []
+
+def get_dialogue(counter, pos, decision_writer):
+    """Get dialogue at certain time"""
+    decision_events = []
     if len(DIALOGUE_ARRRAY) > counter:
         # Check whether we currently only have 2 dialogue options
         if dialogue_counter == 13 or dialogue_counter == 17 or dialogue_counter == 25 or dialogue_counter == 29:
@@ -100,20 +111,24 @@ def get_dialogue(counter, pos):
             if pos == 3:
                 pos = 1
         if DIALOGUE_ARRRAY[counter].count > pos:
+            event = DecisionEvent('dialogue', DIALOGUE_ARRRAY[counter][pos], row[3])
+            decision_events.append(event)
+            decision_writer.writerows([evt._asdict() for evt in decision_events])
             print DIALOGUE_ARRRAY[counter][pos]
             return True
     return False
- 
 
 if __name__ == '__main__':
     INPUT_CSV = raw_input("Enter csv file name: ")
     START_TIME = raw_input("Enter start time: (Format: 1487877840000) ")
     FILTERED_CSV = INPUT_CSV.replace('.csv', '_filtered.csv')
+    DECISIONS_CSV = INPUT_CSV.replace('.csv', '_decisions.csv')
 
     filter_csv()
 
-    with open(FILTERED_CSV, 'rb') as csvfile:
-        READER = csv.reader(csvfile, delimiter=',', quotechar='|')
+    with open(FILTERED_CSV, 'rb') as csvfile, open(DECISIONS_CSV, 'wb') as out:
+        READER = csv.reader(csvfile, delimiter=';', quotechar='|')
+        WRITER = csv.DictWriter(out, DecisionEvent._fields, delimiter=';')
         if 'mouse' in FILTERED_CSV:
             # Row format: event_type;pos_x;pos_y;time
             dialogue_counter = 0
@@ -128,28 +143,28 @@ if __name__ == '__main__':
                         # Remove event - double mouse click probably
                         print ''
                     elif is_top_left_dialogue_button(x, y):
-                        print 'top left'
-                        if get_dialogue(dialogue_counter, 0):
+                        #print 'top left'
+                        if get_dialogue(dialogue_counter, 0, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif is_bottom_left_dialogue_button(x, y):
-                        print 'bottom left'
-                        if get_dialogue(dialogue_counter, 2):
+                        #print 'bottom left'
+                        if get_dialogue(dialogue_counter, 2, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif is_top_right_dialogue_button(x, y):
-                        print 'top right'
-                        if get_dialogue(dialogue_counter, 1):
+                        #print 'top right'
+                        if get_dialogue(dialogue_counter, 1, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif is_bottom_right_dialogue_button(x, y):
-                        print 'bottom right'
-                        if get_dialogue(dialogue_counter, 3):
+                        #print 'bottom right'
+                        if get_dialogue(dialogue_counter, 3, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif is_left_dialogue_button(x, y):
-                        print 'left'
-                        if get_dialogue(dialogue_counter, 0):
+                        #print 'left'
+                        if get_dialogue(dialogue_counter, 0, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif is_bottom_right_dialogue_button(x, y):
-                        print 'right'
-                        if get_dialogue(dialogue_counter, 1):
+                        #print 'right'
+                        if get_dialogue(dialogue_counter, 1, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     last_timestamp = timestamp
         elif 'keyboard' in FILTERED_CSV:
