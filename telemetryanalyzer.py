@@ -117,12 +117,17 @@ if __name__ == '__main__':
         if 'mouse' in FILTERED_CSV:
             # Row format: event_type;pos_x;pos_y;time
             dialogue_counter = 0
+            last_timestamp = 0
             for row in READER:
                 if 'mouse_down_left' in row[0]:
                     #print row
                     x = int(row[1])
                     y = int(row[2])
-                    if is_top_left_dialogue_button(x, y):
+                    timestamp = int(row[3])
+                    if last_timestamp > 0 and timestamp - last_timestamp <= 700:
+                        # Remove event - double mouse click probably
+                        print ''
+                    elif is_top_left_dialogue_button(x, y):
                         print 'top left'
                         if get_dialogue(dialogue_counter, 0):
                             dialogue_counter = dialogue_counter + 1
@@ -146,6 +151,7 @@ if __name__ == '__main__':
                         print 'right'
                         if get_dialogue(dialogue_counter, 1):
                             dialogue_counter = dialogue_counter + 1
+                    last_timestamp = timestamp
         elif 'keyboard' in FILTERED_CSV:
             # Row format: event_type;key_code;key_code_readable;scan_code;alt_pressed;time
             for row in READER:
