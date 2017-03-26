@@ -10,10 +10,10 @@ def is_top_left_dialogue_button(pos_x, pos_y):
 
 # Bottom left dialogue button
 # x: 134 - 134+807
-# y: 983 - 983+84
+# y: 900 - 900+84
 def is_bottom_left_dialogue_button(pos_x, pos_y):
     """Return true if position is within the bottom left dialogue button"""
-    if pos_x >= 134 and pos_x <= (134+807) and pos_y >= 983 and pos_y <= (983+84):
+    if pos_x >= 134 and pos_x <= (134+807) and pos_y >= 900 and pos_y <= (900+84):
         return True
 
 # Top right dialogue button
@@ -26,10 +26,10 @@ def is_top_right_dialogue_button(pos_x, pos_y):
 
 # Bottom right dialogue button
 # x: 978 - 978+807
-# y: 983 - 983+84
+# y: 900 - 900+84
 def is_bottom_right_dialogue_button(pos_x, pos_y):
     """Return true if position is within the bottom right dialogue button"""
-    if pos_x >= 978 and pos_x <= (978+807) and pos_y >= 983 and pos_y <= (983+84):
+    if pos_x >= 978 and pos_x <= (978+807) and pos_y >= 900 and pos_y <= (900+84):
         return True
 
 # Left dialogue button (when they're only two)
