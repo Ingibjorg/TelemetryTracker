@@ -83,13 +83,26 @@ def is_right_dialogue_button(pos_x, pos_y):
     if pos_x >= 978 and pos_x <= (978+807) and pos_y >= 847 and pos_y <= (847+84):
         return True
 
+def filter_csv():
+    with open(INPUT_CSV, 'rb') as csvfile, open(FILTERED_CSV, 'wb') as out:
+        READER = csv.reader(csvfile, delimiter=';', quotechar='|')
+        WRITER = csv.writer(out)
+        for row in READER:
+            if START_TIME < row[3]:
+                WRITER.writerow(row)
 
 if __name__ == '__main__':
     INPUT_CSV = raw_input("Enter csv file name: ")
+    START_TIME = raw_input("Enter start time: (Format: 1487877840000) ")
+    FILTERED_CSV = INPUT_CSV.replace('.csv', '_filtered.csv')
 
-    with open(INPUT_CSV, 'rb') as csvfile:
-        READER = csv.reader(csvfile, delimiter=';', quotechar='|')
-        if 'mouse' in INPUT_CSV:
+    filter_csv()
+
+    with open(FILTERED_CSV, 'rb') as csvfile:
+        READER = csv.reader(csvfile, delimiter=',', quotechar='|')
+        if 'mouse' in FILTERED_CSV:
+            # Row format: event_type;pos_x;pos_y;time
+            dialogue_counter = 0
             for row in READER:
                 if 'mouse_down_left' in row[0]:
                     print row
@@ -97,13 +110,29 @@ if __name__ == '__main__':
                     y = int(row[2])
                     if is_top_left_dialogue_button(x, y):
                         print 'top left'
+                        print DIALOGUE_ARRRAY[dialogue_counter][0]
+                        dialogue_counter = dialogue_counter + 1
                     elif is_bottom_left_dialogue_button(x, y):
                         print 'bottom left'
+                        print DIALOGUE_ARRRAY[dialogue_counter][2]
+                        dialogue_counter = dialogue_counter + 1
                     elif is_top_right_dialogue_button(x, y):
                         print 'top right'
+                        print DIALOGUE_ARRRAY[dialogue_counter][1]
+                        dialogue_counter = dialogue_counter + 1
                     elif is_bottom_right_dialogue_button(x, y):
                         print 'bottom right'
+                        print DIALOGUE_ARRRAY[dialogue_counter][3]
+                        dialogue_counter = dialogue_counter + 1
                     elif is_left_dialogue_button(x, y):
+                        print DIALOGUE_ARRRAY[dialogue_counter][0]
                         print 'left'
+                        dialogue_counter = dialogue_counter + 1
                     elif is_bottom_right_dialogue_button(x, y):
                         print 'right'
+                        print DIALOGUE_ARRRAY[dialogue_counter][1]
+                        dialogue_counter = dialogue_counter + 1
+        elif 'keyboard' in FILTERED_CSV:
+            # Row format: event_type;key_code;key_code_readable;scan_code;alt_pressed;time
+            for row in READER:
+                print row
