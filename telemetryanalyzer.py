@@ -37,7 +37,39 @@ DIALOGUE_ARRRAY = [
     ['What happened?', 'Where are we going?', 'Slow down', '...'],
     ['A working girl.', 'Just a girl.', 'Prostitute.', '...']
 ]
-
+DIALOGUE_DISTRIBUTION = [
+    0, #0
+    50,
+    40,
+    30,
+    0,
+    50, #5
+    0,
+    25,
+    20,
+    30,
+    50, #10
+    50,
+    0,
+    50,
+    50,
+    50, #15
+    50,
+    50,
+    70,
+    0,
+    30, #20
+    50,
+    0,
+    0,
+    70,
+    35, #25
+    50,
+    60,
+    60,
+    60,
+    75, #30
+    110]
 # Top left dialogue button
 # x: 134 - 134+807
 # y: 797 - 797+84
@@ -51,7 +83,7 @@ def is_top_left_dialogue_button(pos_x, pos_y):
 # y: 900 - 900+84
 def is_bottom_left_dialogue_button(pos_x, pos_y):
     """Return true if position is within the bottom left dialogue button"""
-    if pos_x >= 134 and pos_x <= (134+807) and pos_y >= 900 and pos_y <= (900+84):
+    if pos_x >= 134 and pos_x <= (134+807) and pos_y >= 897 and pos_y <= (897+84):
         return True
 
 # Top right dialogue button
@@ -67,7 +99,7 @@ def is_top_right_dialogue_button(pos_x, pos_y):
 # y: 900 - 900+84
 def is_bottom_right_dialogue_button(pos_x, pos_y):
     """Return true if position is within the bottom right dialogue button"""
-    if pos_x >= 978 and pos_x <= (978+807) and pos_y >= 900 and pos_y <= (900+84):
+    if pos_x >= 978 and pos_x <= (978+807) and pos_y >= 897 and pos_y <= (897+84):
         return True
 
 # Left dialogue button (when they're only two)
@@ -135,12 +167,14 @@ if __name__ == '__main__':
             last_timestamp = 0
             for row in READER:
                 if 'mouse_down_left' in row[0]:
-                    #print row
                     x = int(row[1])
                     y = int(row[2])
                     timestamp = int(row[3])
+                    if DIALOGUE_DISTRIBUTION[dialogue_counter] != 0 and (timestamp - last_timestamp >= (DIALOGUE_DISTRIBUTION[dialogue_counter] * 1000)):
+                        dialogue_counter = dialogue_counter + 1
+                        print 'bump to ' + str(dialogue_counter)
                     if last_timestamp > 0 and timestamp - last_timestamp <= 700:
-                        # Remove event - double mouse click probably
+                        # Remove event - double mouse click probably 
                         print ''
                     elif is_top_left_dialogue_button(x, y):
                         #print 'top left'
