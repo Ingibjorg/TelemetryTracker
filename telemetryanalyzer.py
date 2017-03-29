@@ -179,6 +179,7 @@ if __name__ == '__main__':
                     if last_timestamp > 0 and timestamp - last_timestamp <= 700:
                         # Remove event - double mouse click probably 
                         print ''
+                        timestamp = last_timestamp # Keep old last_timestamp
                     elif is_top_left_dialogue_button(x, y):
                         #print 'top left'
                         if get_dialogue(dialogue_counter, 0, WRITER):
