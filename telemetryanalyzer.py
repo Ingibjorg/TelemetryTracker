@@ -1,5 +1,6 @@
 from collections import namedtuple
 import csv
+import sys
 
 FilteredEvent = namedtuple('FilteredEvent', ['event_type', 'pos_x', 'pos_y', 'time'])
 DecisionEvent = namedtuple('DecisionEvent', ['event_type', 'decision', 'time'])
@@ -170,6 +171,8 @@ if __name__ == '__main__':
                     x = int(row[1])
                     y = int(row[2])
                     timestamp = int(row[3])
+                    if dialogue_counter > 31:
+                        sys.exit(0)
                     if DIALOGUE_DISTRIBUTION[dialogue_counter] != 0 and (timestamp - last_timestamp >= (DIALOGUE_DISTRIBUTION[dialogue_counter] * 1000)):
                         dialogue_counter = dialogue_counter + 1
                         print 'bump to ' + str(dialogue_counter)
