@@ -171,50 +171,40 @@ if __name__ == '__main__':
                     x = int(row[1])
                     y = int(row[2])
                     timestamp = int(row[3])
-                    last_move_timestamp = 0
                     if dialogue_counter > 31:
                         sys.exit(0)
                     if DIALOGUE_DISTRIBUTION[dialogue_counter] != 0 and (timestamp - last_timestamp >= (DIALOGUE_DISTRIBUTION[dialogue_counter] * 1000)):
-                        next_time = last_timestamp + (DIALOGUE_DISTRIBUTION[dialogue_counter] * 1000)
                         dialogue_counter = dialogue_counter + 1
                         print 'bump to ' + str(dialogue_counter)
-                        if timestamp - next_time >= (DIALOGUE_DISTRIBUTION[dialogue_counter] * 1000):
-                            dialogue_counter = dialogue_counter + 1
-                            print 'bump to ' + str(dialogue_counter)
-                    if (last_timestamp > 0 and timestamp - last_timestamp <= 700) or (last_move_timestamp > 0 and last_move_timestamp <= 700):
+                    if last_timestamp > 0 and timestamp - last_timestamp <= 700:
                         # Remove event - double mouse click probably 
                         print ''
+                        timestamp = last_timestamp # Keep old last_timestamp
                     elif is_top_left_dialogue_button(x, y):
                         #print 'top left'
                         if get_dialogue(dialogue_counter, 0, WRITER):
                             dialogue_counter = dialogue_counter + 1
-                            last_timestamp = timestamp
                     elif is_bottom_left_dialogue_button(x, y):
                         #print 'bottom left'
                         if get_dialogue(dialogue_counter, 2, WRITER):
                             dialogue_counter = dialogue_counter + 1
-                            last_timestamp = timestamp
                     elif is_top_right_dialogue_button(x, y):
                         #print 'top right'
                         if get_dialogue(dialogue_counter, 1, WRITER):
                             dialogue_counter = dialogue_counter + 1
-                            last_timestamp = timestamp
                     elif is_bottom_right_dialogue_button(x, y):
                         #print 'bottom right'
                         if get_dialogue(dialogue_counter, 3, WRITER):
                             dialogue_counter = dialogue_counter + 1
-                            last_timestamp = timestamp
                     elif is_left_dialogue_button(x, y):
                         #print 'left'
                         if get_dialogue(dialogue_counter, 0, WRITER):
                             dialogue_counter = dialogue_counter + 1
-                            last_timestamp = timestamp
                     elif is_bottom_right_dialogue_button(x, y):
                         #print 'right'
                         if get_dialogue(dialogue_counter, 1, WRITER):
                             dialogue_counter = dialogue_counter + 1
-                            last_timestamp = timestamp
-                    last_move_timestamp = timestamp
+                    last_timestamp = timestamp
         elif 'keyboard' in FILTERED_CSV:
             # Row format: event_type;key_code;key_code_readable;scan_code;alt_pressed;time
             for row in READER:
