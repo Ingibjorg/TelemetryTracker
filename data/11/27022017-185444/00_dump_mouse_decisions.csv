@@ -1,6 +1,7 @@
 dialogue;Enough excuses, Toad.;1488221858884
 dialogue;...;1488221896412
 dialogue;[Head Upstairs];1488221923060
+dialogue;Silence...;1488221964828
 dialogue;Everyone calm down!;1488222025556
 dialogue;You're drunk...;1488222036844
 dialogue;SHUT UP!;1488222171989
@@ -22,9 +23,10 @@ dialogue;I'm staying out of it.;1488222852365
 dialogue;Staying out of this.;1488223024157
 dialogue;C'mon, I'm tired.;1488223195669
 dialogue;Tell you what I told Toad...;1488223255605
-dialogue;...;1488223292789
-dialogue;Not my fault;1488223308325
-dialogue;Toad;1488223356517
-dialogue;[Give Colin a Drink];1488223402485
-dialogue;What happened?;1488223455909
-dialogue;Prostitute.;1488223524229
+dialogue;[Take a Sip];1488223292789
+dialogue;Better to be feared...;1488223308325
+dialogue;Don't need advice.;1488223356517
+dialogue;There was a girl...;1488223402485
+dialogue;[Give Colin a Drink];1488223455909
+dialogue;Slow down;1488223524229
+dialogue;A working girl.;1488223622445
