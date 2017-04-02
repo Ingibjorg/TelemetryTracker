@@ -182,6 +182,10 @@ if __name__ == '__main__':
                         dialogue_counter = dialogue_counter + 1
                         print last_timestamp
                         print 'bump to ' + str(dialogue_counter)
+                        decision_events = []
+                        event = DecisionEvent('dialogue', 'Silence...', row[3]) # Record time of silence
+                        decision_events.append(event)
+                        WRITER.writerows([evt._asdict() for evt in decision_events])
                         if (timestamp - last_timestamp) < ((DIALOGUE_DISTRIBUTION[dialogue_counter - 1] + 5) * 1000):
                             miss = True
                             print 'miss'
