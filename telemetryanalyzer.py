@@ -165,7 +165,7 @@ if __name__ == '__main__':
         if 'mouse' in FILTERED_CSV:
             # Row format: event_type;pos_x;pos_y;time
             dialogue_counter = 0
-            last_timestamp = 0
+            last_timestamp = int(START_TIME)
             for row in READER:
                 if 'mouse_down_left' in row[0]:
                     x = int(row[1])
