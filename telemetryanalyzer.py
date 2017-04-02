@@ -7,7 +7,7 @@ DecisionEvent = namedtuple('DecisionEvent', ['event_type', 'decision', 'time'])
 DIALOGUE_ARRRAY = [
     ['I\'m looking at a 3 foot toad.', 'Enough excuses, Toad.', 'No harm done.', '...'], # 135-145 (10 sek)
     ['I don\'t make the rules.', 'Get it fixed.', 'Not my problem.', '...'], # 34 sek
-    ['So what have I walked into?', 'What do you want me to do?', '[Head Upstairs]', '...'], # 20 sek (3 sek)
+    ['So what have I walked into?', 'What do you want me to do?', '[Head Upstairs]', '...'], # 28 sek (5 sek)
     ['Do it yourself', 'Why\'s he so pissed?', 'I\'m heading up.', '...'], # 11 sek
     ['What\'s going on here?', 'Alright, why\'d you hit her?', 'Everyone calm down!', '...'], # ?
     ['This is your last warning.', 'You\'re drunk...', '[threaten him]', '...'], # 8 sek
@@ -22,7 +22,7 @@ DIALOGUE_ARRRAY = [
     ['Light her cigarette...', 'Make a joke...', 'Got an extra?', '...'], # 37 sek
     ['Beautiful...', 'Stop changing the subject.', 'I\'m trying to help you.', '...'], # 30 sek
     ['This is about Fabletown.', 'He hit you.', 'Are you sure?', '...'], # 42 sek
-    ['[give her some money]', 'Wish I could help.'], # 31 sek 14:23 (give her some money)
+    ['[give her some money]', 'Wish I could help.'], # 43 sek 14:23 (give her some money)
     ['That\'s harsh.', 'I clean up okay.', 'Tell me what you really think.', '...'], # 53 sek 15:20
     ['Don\'t make me come over there.', 'Come on out.', 'Stay off the grass.' '...'], # ?
     ['Out pretty late.', 'Why did you hide?', 'Where are you going?', '...'], # 20 sek
@@ -38,39 +38,42 @@ DIALOGUE_ARRRAY = [
     ['What happened?', 'Where are we going?', 'Slow down', '...'], # ? 31:15
     ['A working girl.', 'Just a girl.', 'Prostitute.', '...'] # ?
 ]
+
 DIALOGUE_DISTRIBUTION = [
-    0, #0
-    50,
-    40,
-    30,
+    145, #0
+    44,
+    33,
+    21,
     0,
-    50, #5
+    18, #5
     0,
-    25,
-    20,
-    30,
-    50, #10
+    26,
+    23,
+    26,
+    51, #10
     50,
     0,
-    50,
-    50,
-    50, #15
-    50,
-    50,
-    70,
+    44,
+    47,
+    40, #15
+    52,
+    53,
+    63,
     0,
     30, #20
-    50,
+    34,
     0,
     0,
-    70,
-    35, #25
-    50,
+    67,
+    39, #25
+    22,
     60,
-    60,
-    60,
-    75, #30
-    110]
+    51,
+    63,
+    0, #30
+    0
+]
+
 # Top left dialogue button
 # x: 134 - 134+807
 # y: 797 - 797+84
@@ -168,17 +171,24 @@ if __name__ == '__main__':
             last_timestamp = int(START_TIME)
             for row in READER:
                 if 'mouse_down_left' in row[0]:
+                    print row
                     x = int(row[1])
                     y = int(row[2])
                     timestamp = int(row[3])
+                    miss = False
                     if dialogue_counter > 31:
                         sys.exit(0)
-                    if DIALOGUE_DISTRIBUTION[dialogue_counter] != 0 and (timestamp - last_timestamp >= (DIALOGUE_DISTRIBUTION[dialogue_counter] * 1000)):
+                    if DIALOGUE_DISTRIBUTION[dialogue_counter] != 0 and (timestamp - last_timestamp > (DIALOGUE_DISTRIBUTION[dialogue_counter] * 1000)):
                         dialogue_counter = dialogue_counter + 1
+                        print last_timestamp
                         print 'bump to ' + str(dialogue_counter)
-                    if last_timestamp > 0 and timestamp - last_timestamp <= 700:
+                        if (timestamp - last_timestamp) < ((DIALOGUE_DISTRIBUTION[dialogue_counter - 1] + 5) * 1000):
+                            miss = True
+                            print 'miss'
+                            last_timestamp = timestamp # User just missed the time window, let's update timestamp
+                    if miss or (last_timestamp > 0 and timestamp - last_timestamp <= 700):
                         # Remove event - double mouse click probably 
-                        print ''
+                        print 'removing'
                         timestamp = last_timestamp # Keep old last_timestamp
                     elif is_top_left_dialogue_button(x, y):
                         #print 'top left'
