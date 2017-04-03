@@ -1,6 +1,6 @@
 dialogue;I'm looking at a 3 foot toad.;1488544250107
 dialogue;Get it fixed.;1488544287731
-dialogue;[Head Upstairs];1488544311915
+dialogue;Silence...;1488544311915
 dialogue;I'm heading up.;1488544324803
 dialogue;What's going on here?;1488544412763
 dialogue;This is your last warning.;1488544423259
@@ -11,9 +11,9 @@ dialogue;Are you hurt?;1488544610195
 dialogue;[Throw him out];1488544646971
 dialogue;How's your insurance?;1488544693499
 dialogue;Thanks...;1488544781251
-dialogue;Let her;1488544862179
-dialogue;Make a joke...;1488544895307
-dialogue;Silence...;1488544941211
+dialogue;Stop her;1488544822000
+dialogue;Light her a cigarette...;1488544862000
+dialogue;Stop changing the subject.;1488544895000
 dialogue;This is about Fabletown.;1488544941211
 dialogue;[give her some money];1488544976179
 dialogue;...;1488545032675
