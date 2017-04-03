@@ -3,6 +3,7 @@ dialogue;I don't make the rules.;1488136135503
 dialogue;What do you want me to do?;1488136162743
 dialogue;I'm heading up.;1488136176775
 dialogue;Alright, why'd you hit her?;1488136272008
+dialogue;Silence...;1488136313400
 dialogue;Be nice, or I'll make you wait outside.;1488136654296
 dialogue;What happened?;1488136671032
 dialogue;You need to leave.;1488136687920
@@ -12,11 +13,13 @@ dialogue;Sorry about the car.;1488136785992
 dialogue;What are you doing?;1488136874501
 dialogue;Let her;1488136952072
 dialogue;Got an extra?;1488136985176
-dialogue;Beautiful...;1488137033088
-dialogue;This is about Fabletown.;1488137065992
-dialogue;That's harsh.;1488137289592
-dialogue;Don't make me come over there.;1488137314784
-dialogue;Out pretty late.;1488137342880
+dialogue;Silence...;1488137033088
+dialogue;This is about Fabletown.;1488137033088
+dialogue;[give her some money];1488137065992
+dialogue;Silence...;1488137254192
+dialogue;Don't make me come over there.;1488137289592
+dialogue;Out pretty late.;1488137314784
+dialogue;I promise.;1488137342880
 dialogue;Haven't seen her.;1488137485480
 dialogue;Yeah. Get out.;1488137658488
 dialogue;Don't be dramatic.;1488137718480

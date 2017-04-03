@@ -13,7 +13,7 @@ DIALOGUE_ARRRAY = [
     ['This is your last warning.', 'You\'re drunk...', '[threaten him]', '...'], # 8 sek
     ['Say that word again.', 'SHUT UP!', 'Be nice, or I\'ll make you wait outside.', '...'], # ?
     ['What happened?', 'What are you doing here?', 'You need to leave.', '...'], # 16 sek
-    ['What happened?', 'You need to leave.', 'Are you alright?', '...'], # 13 sek
+    ['What happened?', 'You need to leave.', 'Are you alright?', '...'], # 13 sek or 24 sek
     ['What\'s your name?', 'Are you hurt?', 'Why was he hitting you?', '...'], # 16 sek
     ['HEY!', '[Throw him out]', 'Will you excuse me a moment?', '...'], # 41 sek
     ['Sorry about the car.', 'Get off the street.', 'How\'s your insurance?', '...'], # 40 sek
@@ -49,7 +49,7 @@ DIALOGUE_DISTRIBUTION = [
     0,
     26,
     23,
-    26,
+    23, # or 35
     51, #10
     50,
     0,

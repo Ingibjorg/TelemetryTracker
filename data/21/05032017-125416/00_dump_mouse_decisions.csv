@@ -1,6 +1,7 @@
 dialogue;I'm looking at a 3 foot toad.;1488718608099
 dialogue;Get it fixed.;1488718647355
-dialogue;[Head Upstairs];1488718684835
+dialogue;Silence...;1488718684835
+dialogue;Silence...;1488718723507
 dialogue;Alright, why'd you hit her?;1488718784819
 dialogue;[threaten him];1488718795699
 dialogue;Say that word again.;1488718934531
@@ -12,14 +13,18 @@ dialogue;Sorry about the car.;1488719071515
 dialogue;What are you doing?;1488719164835
 dialogue;Let her;1488719241307
 dialogue;Light her cigarette...;1488719274539
-dialogue;Beautiful...;1488719320524
-dialogue;This is about Fabletown.;1488719355451
-dialogue;I clean up okay.;1488719602035
-dialogue;Come on out.;1488719624523
-dialogue;I'm staying out of it.;1488719659628
+dialogue;Silence...;1488719320524
+dialogue;This is about Fabletown.;1488719320524
+dialogue;[give her some money];1488719355451
+dialogue;Silence...;1488719547787
+dialogue;Come on out.;1488719602035
+dialogue;Why did you hide?;1488719624523
+dialogue;Silence...;1488719659628
 dialogue;I did.;1488719841988
 dialogue;Yeah. Get out.;1488719851820
+dialogue;Silence...;1488719925900
 dialogue;I just want some rest.;1488720011756
+dialogue;Silence...;1488720073068
 dialogue;My job;1488720073068
 dialogue;Toad;1488720125724
 dialogue;[Give Colin a Drink];1488720177652
