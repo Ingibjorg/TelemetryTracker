@@ -7,10 +7,10 @@ dialogue;[threaten him];1488537214517
 dialogue;...;1488537246989
 dialogue;What are you doing here?;1488537339013
 dialogue;What happened?;1488537354829
-dialogue;What's your name?;1488537371157
-dialogue;Will you excuse me a moment?;1488537382693
-dialogue;Get off the street.;1488537421949
-dialogue;Thanks...;1488537466805
+dialogue;What are you doing here?;1488537371157
+dialogue;Why was he hitting you?;1488537382693
+dialogue;[Throw him out];1488537421949
+dialogue;How's your insurance?.;1488537466805
 dialogue;What are you doing?;1488537554093
 dialogue;Let her;1488537589125
 dialogue;Make a joke...;1488537633709
@@ -21,6 +21,7 @@ dialogue;That's harsh;1488537809477
 dialogue;Why did you hide?;1488538010221
 dialogue;I'm staying out of it.;1488538048261
 dialogue;I did.;1488538277421
+dialogue;Just a second ago.;1488538285000
 dialogue;There's only the one.;1488538457709
 dialogue;Don't be dramatic.;1488538517000
 dialogue;[Take a Sip];1488538550000
