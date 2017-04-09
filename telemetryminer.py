@@ -68,14 +68,14 @@ def get_mouse_event(click, x, y, ts):
             overA = 1
         elif is_right_dialogue_button(x, y):
             overB = 1
-        elif is_top_left_dialogue_button(x, y):
-            overA = 1
-        elif is_bottom_left_dialogue_button(x, y):
-            overC = 1
-        elif is_top_right_dialogue_button(x, y):
-            overB = 1
-        elif is_bottom_right_dialogue_button(x, y):
-            overD = 1
+    elif is_top_left_dialogue_button(x, y):
+        overA = 1
+    elif is_bottom_left_dialogue_button(x, y):
+        overC = 1
+    elif is_top_right_dialogue_button(x, y):
+        overB = 1
+    elif is_bottom_right_dialogue_button(x, y):
+        overD = 1
     return [click, x, y, overA, overB, overC, overD, ts]
 
 if __name__ == '__main__':
@@ -112,12 +112,15 @@ if __name__ == '__main__':
                         dialogue_events.append(event)
                     elif ts >= DIALOGUE_TIMES[dialogue_counter]:
                         for silence in SILENCE_TIMES:
-                            if DIALOGUE_TIMES[dialogue_counter] in silence:
+                            if DIALOGUE_TIMES[dialogue_counter] == int(silence):
                                 dialogue_events.append(event)
                                 dialogue_counter = dialogue_counter + 1
                                 write_events_to_file(dialogue_events)
                                 dialogue_events = []
                 if ts == DIALOGUE_TIMES[dialogue_counter]:
+                    click = 0
+                    if 'mouse_down_left' in row[0]:
+                        click = 1
                     event = get_mouse_event(1, x, y, ts)
                     dialogue_events.append(event)
                     dialogue_counter = dialogue_counter + 1
