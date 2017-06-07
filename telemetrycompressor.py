@@ -24,42 +24,60 @@ if __name__ == '__main__':
     LAST_TS_E = 0
 
     # Values in output array:
-    A = 0; ttA = 0; tmpA = 0; vtA = 0; B = 0; ttB = 0; tmpB = 0; vtB = 0
-    C = 0; ttC = 0; tmpC = 0; vtC = 0; D = 0; ttD = 0; tmpD = 0; vtD = 0
-    E = 0; ttE = 0; tmpE = 0; vtE = 0
+    A = 0 # Boolean value indicating whether box was visited
+    ttA = 0 # Total time spent on A (milliseconds)
+    tmpA = 0
+    vtA = 0
+    B = 0; ttB = 0; tmpB = 0; vtB = 0; C = 0; ttC = 0; tmpC = 0; vtC = 0; D = 0; ttD = 0; tmpD = 0; vtD = 0
+    E = 0; ttE = 0; tmpE = 0; vtE = 0 # E is for the area outside of the response boxes
     CLICK = 83 # 83 for S as in silence
 
     for event in INPUT_ARRAY:
         if event[3] == 1: #A
             A = 1
             vtA = vtA + 1
-            LAST_TS_A = event[7]
+            if LAST_TS == "A":
+                ttA = ttA + (int(event[7]) - LAST_TS_A)
+            LAST_TS_A = int(event[7])
+            LAST_TS = "A"
             if event[0]:
                 CLICK = 65
         elif event[4] == 1: #B
             B = 1
             vtB = vtB + 1
-            LAST_TS_B = event[7]
+            if LAST_TS == "B":
+                ttB = ttB + (int(event[7]) - LAST_TS_B)
+            LAST_TS_B = int(event[7])
+            LAST_TS = "B"
             if event[0]:
                 CLICK = 66
         elif event[5] == 1: #C
             C = 1
             vtC = vtC + 1
-            LAST_TS_C = event[7]
+            if LAST_TS == "C":
+                ttC = ttC + (int(event[7]) - LAST_TS_C)
+            LAST_TS_C = int(event[7])
+            LAST_TS = "C"
             if event[0]:
                 CLICK = 67
         elif event[6] == 1: #D
             D = 1
             vtD = vtD + 1
-            LAST_TS_D = event[7]
+            if LAST_TS == "D":
+                ttD = ttD + (int(event[7]) - LAST_TS_D)
+            LAST_TS_D = int(event[7])
+            LAST_TS = "D"
             if event[0]:
                 CLICK = 68
         else:
             E = 1 # Not over any response box
             vtE = vtE + 1
-            LAST_TS_E = event[7]
-
-    print INPUT_ARRAY[-1]
+            if LAST_TS == "E":
+                ttE = int(event[7]) - LAST_TS_E
+            LAST_TS_E = int(event[7])
+            LAST_TS = "E"
+    print LAST_TS
+    print ttB
     RESULT = [A, ttA, tmpA, vtA, B, ttB, tmpB, vtB, C, ttC, tmpC, vtC, D, ttD, tmpD, vtD,
               E, ttE, tmpE, vtE, CLICK]
     print RESULT
