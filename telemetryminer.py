@@ -1,8 +1,6 @@
 import csv
 import sys
 
-#['click', 'x', 'y', 'overA', 'overB', 'overC', 'overD'])
-
 # Top left dialogue button
 # x: 134 - 134+807
 # y: 797 - 797+84
@@ -54,7 +52,7 @@ def is_right_dialogue_button(pos_x, pos_y):
 def write_events_to_file(events):
     target = open(OUTPUT_FILE, 'a')
     target.write('Dialogue ' + str(dialogue_counter) + ' events: ' + str(len(events)) + '\n')
-    target.write(str(events))
+    target.write(str(events)) #['click', 'x', 'y', 'overA', 'overB', 'overC', 'overD'])
     target.write('\n')
     target.close()
 

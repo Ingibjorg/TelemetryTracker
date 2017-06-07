@@ -5,72 +5,73 @@ import sys
 FilteredEvent = namedtuple('FilteredEvent', ['event_type', 'pos_x', 'pos_y', 'time'])
 DecisionEvent = namedtuple('DecisionEvent', ['event_type', 'decision', 'time'])
 DIALOGUE_ARRRAY = [
-    ['I\'m looking at a 3 foot toad.', 'Enough excuses, Toad.', 'No harm done.', '...'], # 135-145 (10 sek)
-    ['I don\'t make the rules.', 'Get it fixed.', 'Not my problem.', '...'], # 34 sek
-    ['So what have I walked into?', 'What do you want me to do?', '[Head Upstairs]', '...'], # 28 sek (5 sek)
-    ['Do it yourself', 'Why\'s he so pissed?', 'I\'m heading up.', '...'], # 11 sek
-    ['What\'s going on here?', 'Alright, why\'d you hit her?', 'Everyone calm down!', '...'], # ?
-    ['This is your last warning.', 'You\'re drunk...', '[threaten him]', '...'], # 8 sek
-    ['Say that word again.', 'SHUT UP!', 'Be nice, or I\'ll make you wait outside.', '...'], # ?
-    ['What happened?', 'What are you doing here?', 'You need to leave.', '...'], # 16 sek
-    ['What happened?', 'You need to leave.', 'Are you alright?', '...'], # 13 sek or 24 sek
-    ['What\'s your name?', 'Are you hurt?', 'Why was he hitting you?', '...'], # 16 sek
-    ['HEY!', '[Throw him out]', 'Will you excuse me a moment?', '...'], # 41 sek
-    ['Sorry about the car.', 'Get off the street.', 'How\'s your insurance?', '...'], # 40 sek
-    ['What are you doing?', 'Leave him alone.', 'Thanks...', '...'], # ?
-    ['Let her', 'Stop her'], # 34 sek
-    ['Light her cigarette...', 'Make a joke...', 'Got an extra?', '...'], # 37 sek
-    ['Beautiful...', 'Stop changing the subject.', 'I\'m trying to help you.', '...'], # 30 sek
-    ['This is about Fabletown.', 'He hit you.', 'Are you sure?', '...'], # 42 sek
-    ['[give her some money]', 'Wish I could help.'], # 43 sek 14:23 (give her some money)
-    ['That\'s harsh.', 'I clean up okay.', 'Tell me what you really think.', '...'], # 53 sek 15:20
-    ['Don\'t make me come over there.', 'Come on out.', 'Stay off the grass.' '...'], # ?
-    ['Out pretty late.', 'Why did you hide?', 'Where are you going?', '...'], # 20 sek
-    ['I promise.', 'No. I can\'t do that.', 'I\'m staying out of it.', '...'], # 24 sek 19:26
-    ['I did.', 'Haven\'t seen her.', 'Staying out of this.', '...'], # ?
-    ['Yeah. Get out.', 'There\'s only the one.', 'C\'mon, I\'m tired.', '...'], # ? 25:48
-    ['Don\'t be dramatic.', 'I won\'t.', 'Tell you what I told Toad...', '...'], # 57 sek
-    ['I just want some rest.', '[Take a Sip]'], # 29 sek #
-    ['Everyone hates me?', 'Better to be feared...', 'I was just hungry.', '...'], # 12 sek
-    ['My job', 'Not my fault', 'Don\'t need advice.', '...'], # 50 sek
-    ['There was a girl...', 'Beauty', 'Toad', '...'], # 41 sek 29:13
-    ['[Give Colin a Drink]', '[Take Drink]'], # 53 sek 30:08
-    ['What happened?', 'Where are we going?', 'Slow down', '...'], # ? 31:15
-    ['A working girl.', 'Just a girl.', 'Prostitute.', '...'] # ?
+    ['I\'m looking at a 3 foot toad.', 'Enough excuses, Toad.', 'No harm done.', '...'],
+    ['I don\'t make the rules.', 'Get it fixed.', 'Not my problem.', '...'],
+    ['So what have I walked into?', 'What do you want me to do?', '[Head Upstairs]', '...'],
+    ['Do it yourself', 'Why\'s he so pissed?', 'I\'m heading up.', '...'],
+    ['What\'s going on here?', 'Alright, why\'d you hit her?', 'Everyone calm down!', '...'],
+    ['This is your last warning.', 'You\'re drunk...', '[threaten him]', '...'],
+    ['Say that word again.', 'SHUT UP!', 'Be nice, or I\'ll make you wait outside.', '...'],
+    ['What happened?', 'What are you doing here?', 'You need to leave.', '...'],
+    ['What happened?', 'You need to leave.', 'Are you alright?', '...'],
+    ['What\'s your name?', 'Are you hurt?', 'Why was he hitting you?', '...'],
+    ['HEY!', '[Throw him out]', 'Will you excuse me a moment?', '...'],
+    ['Sorry about the car.', 'Get off the street.', 'How\'s your insurance?', '...'],
+    ['What are you doing?', 'Leave him alone.', 'Thanks...', '...'],
+    ['Let her', 'Stop her'],
+    ['Light her cigarette...', 'Make a joke...', 'Got an extra?', '...'],
+    ['Beautiful...', 'Stop changing the subject.', 'I\'m trying to help you.', '...'],
+    ['This is about Fabletown.', 'He hit you.', 'Are you sure?', '...'],
+    ['[give her some money]', 'Wish I could help.'],
+    ['That\'s harsh.', 'I clean up okay.', 'Tell me what you really think.', '...'],
+    ['Don\'t make me come over there.', 'Come on out.', 'Stay off the grass.' '...'],
+    ['Out pretty late.', 'Why did you hide?', 'Where are you going?', '...'],
+    ['I promise.', 'No. I can\'t do that.', 'I\'m staying out of it.', '...'],
+    ['I did.', 'Haven\'t seen her.', 'Staying out of this.', '...'],
+    ['Yeah. Get out.', 'There\'s only the one.', 'C\'mon, I\'m tired.', '...'],
+    ['Don\'t be dramatic.', 'I won\'t.', 'Tell you what I told Toad...', '...'],
+    ['I just want some rest.', '[Take a Sip]'],
+    ['Everyone hates me?', 'Better to be feared...', 'I was just hungry.', '...'],
+    ['My job', 'Not my fault', 'Don\'t need advice.', '...'],
+    ['There was a girl...', 'Beauty', 'Toad', '...'],
+    ['[Give Colin a Drink]', '[Take Drink]'],
+    ['What happened?', 'Where are we going?', 'Slow down', '...'],
+    ['A working girl.', 'Just a girl.', 'Prostitute.', '...']
 ]
 
+# Dialogue time distibution in seconds
 DIALOGUE_DISTRIBUTION = [
-    145, #0
+    145,
     44,
     33,
     21,
     0,
-    18, #5
+    18,
     0,
     26,
     23,
-    23, # or 35
-    51, #10
+    23,
+    51,
     50,
     0,
     44,
     47,
-    40, #15
+    40,
     52,
     53,
     63,
     0,
-    30, #20
+    30,
     34,
     0,
     0,
     67,
-    39, #25
+    39,
     22,
     60,
     51,
     63,
-    0, #30
+    0,
     0
 ]
 
@@ -219,7 +220,3 @@ if __name__ == '__main__':
                         if get_dialogue(dialogue_counter, 1, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     last_timestamp = timestamp
-        elif 'keyboard' in FILTERED_CSV:
-            # Row format: event_type;key_code;key_code_readable;scan_code;alt_pressed;time
-            for row in READER:
-                print row
