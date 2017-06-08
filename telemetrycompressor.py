@@ -39,6 +39,7 @@ def compress_event(events):
     click = 83 # 83 for S as in silence
     vbc = 0 # Velocity before click (just before?)
     tbv = 0 # Total button visits
+    ttbd = 0 # Total time before decision process
 
     for mouse_event in events:
         if mouse_event[3] == 1: #A
@@ -48,6 +49,8 @@ def compress_event(events):
                 delta_time = current_time - last_ts_a
                 ttA = ttA + delta_time
                 distance = get_mouse_distance(last_x, mouse_event[1], last_y, mouse_event[2])
+                if ttbd == 0 and distance < 5:
+                    ttbd = current_time - FIRST_TS
                 tmvA = tmvA + get_mouse_velocity(distance, delta_time)
             else:
                 vtA = vtA + 1
@@ -64,6 +67,8 @@ def compress_event(events):
                 delta_time = current_time - last_ts_b
                 ttB = ttB + delta_time
                 distance = get_mouse_distance(last_x, mouse_event[1], last_y, mouse_event[2])
+                if ttbd == 0 and distance < 5:
+                    ttbd = current_time - FIRST_TS
                 tmvB = tmvB + get_mouse_velocity(distance, delta_time)
             else:
                 vtB = vtB + 1
@@ -80,6 +85,8 @@ def compress_event(events):
                 delta_time = current_time - last_ts_c
                 ttC = ttC + delta_time
                 distance = get_mouse_distance(last_x, mouse_event[1], last_y, mouse_event[2])
+                if ttbd == 0 and distance < 5:
+                    ttbd = current_time - FIRST_TS
                 tmvC = tmvC + get_mouse_velocity(distance, delta_time)
             else:
                 vtC = vtC + 1
@@ -94,8 +101,10 @@ def compress_event(events):
             current_time = mouse_event[7]
             if last_ts == "D":
                 delta_time = current_time - last_ts_d
-                ttD = ttD + (current_time - delta_time)
+                ttD = ttD + delta_time
                 distance = get_mouse_distance(last_x, mouse_event[1], last_y, mouse_event[2])
+                if ttbd == 0 and distance < 5:
+                    ttbd = current_time - FIRST_TS
                 tmvD = tmvD + get_mouse_velocity(distance, delta_time)
             else:
                 vtD = vtD + 1
@@ -112,6 +121,8 @@ def compress_event(events):
                 delta_time = current_time - last_ts_e
                 ttE = current_time - last_ts_e
                 distance = get_mouse_distance(last_x, mouse_event[1], last_y, mouse_event[2])
+                if ttbd == 0 and distance < 5:
+                    ttbd = current_time - FIRST_TS
                 tmvE = tmvE + get_mouse_velocity(distance, delta_time)
             else:
                 vtE = vtE + 1
@@ -123,7 +134,7 @@ def compress_event(events):
     tbv = vtA + vtB + vtC + vtD + vtE
     result = [A, ttA, int(round(tmvA)), vtA, B, ttB, int(round(tmvB)), vtB,
               C, ttC, int(round(tmvC)), vtC, D, ttD, int(round(tmvD)), vtD,
-              E, ttE, int(round(tmvE)), vtE, click, int(round(vbc)), tbv, TTBD]
+              E, ttE, int(round(tmvE)), vtE, click, int(round(vbc)), tbv, ttbd]
     write_event_to_file(result)
 
 def write_event_to_file(event):
@@ -139,8 +150,6 @@ def get_mouse_distance(last_x, current_x, last_y, current_y):
 def get_mouse_velocity(distance, time):
     if time == 0:
         return 0
-    if distance > 5:
-        print 'distance', distance
     return round(distance/time, 2)
 
 if __name__ == '__main__':
@@ -148,7 +157,6 @@ if __name__ == '__main__':
     OUTPUT_FILE = INPUT_FILE.replace('.txt', '_compressed.txt')
     #text_file = "./data/3/23022017-171351/00_dump_mouse_mined.txt"
     INPUT_ARRAY = []
-    TTBD = 0
 
     with open(INPUT_FILE, "r") as ins:
         for line in ins:
