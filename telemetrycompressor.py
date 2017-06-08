@@ -37,7 +37,7 @@ def compress_event(event):
     A = 0 # Boolean value indicating whether box was visited
     ttA = 0 # Total time spent on A (milliseconds)
     tmpA = 0
-    vtA = 0
+    vtA = 0 # Visit times
     B = 0; ttB = 0; tmpB = 0; vtB = 0; C = 0; ttC = 0; tmpC = 0; vtC = 0; D = 0; ttD = 0; tmpD = 0; vtD = 0
     E = 0; ttE = 0; tmpE = 0; vtE = 0 # E is for the area outside of the response boxes
     CLICK = 83 # 83 for S as in silence
@@ -45,45 +45,50 @@ def compress_event(event):
     for mouse_event in event:
         if mouse_event[3] == 1: #A
             A = 1
-            vtA = vtA + 1
             if LAST_TS == "A":
                 ttA = ttA + (int(mouse_event[7]) - LAST_TS_A)
+            else:
+                vtA = vtA + 1
             LAST_TS_A = int(mouse_event[7])
             LAST_TS = "A"
             if mouse_event[0]:
                 CLICK = 65
         elif mouse_event[4] == 1: #B
             B = 1
-            vtB = vtB + 1
             if LAST_TS == "B":
                 ttB = ttB + (int(mouse_event[7]) - LAST_TS_B)
+            else:
+                vtB = vtB + 1
             LAST_TS_B = int(mouse_event[7])
             LAST_TS = "B"
             if mouse_event[0]:
                 CLICK = 66
         elif mouse_event[5] == 1: #C
             C = 1
-            vtC = vtC + 1
             if LAST_TS == "C":
                 ttC = ttC + (int(mouse_event[7]) - LAST_TS_C)
+            else:
+                vtC = vtC + 1
             LAST_TS_C = int(mouse_event[7])
             LAST_TS = "C"
             if mouse_event[0]:
                 CLICK = 67
         elif mouse_event[6] == 1: #D
             D = 1
-            vtD = vtD + 1
             if LAST_TS == "D":
                 ttD = ttD + (int(mouse_event[7]) - LAST_TS_D)
+            else:
+                vtD = vtD + 1
             LAST_TS_D = int(mouse_event[7])
             LAST_TS = "D"
             if mouse_event[0]:
                 CLICK = 68
         else:
             E = 1 # Not over any response box
-            vtE = vtE + 1
             if LAST_TS == "E":
                 ttE = int(mouse_event[7]) - LAST_TS_E
+            else:
+                vtE = vtE + 1
             LAST_TS_E = int(mouse_event[7])
             LAST_TS = "E"
     RESULT = [A, ttA, tmpA, vtA, B, ttB, tmpB, vtB, C, ttC, tmpC, vtC, D, ttD, tmpD, vtD,
@@ -95,6 +100,10 @@ def write_event_to_file(event):
     target.write(str(event) + '\n')
     target.close()
 
+def calculate_mouse_velocity(event):
+    target = open(OUTPUT_FILE, 'a')
+    target.write(str(event) + '\n')
+    target.close()
 
 if __name__ == '__main__':
     for event in INPUT_ARRAY:
