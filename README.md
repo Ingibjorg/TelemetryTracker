@@ -8,8 +8,16 @@
 3. python -m pip install pywin32
 4. python -m pip install PyUserInput
 
-## Run
+## Run Telemtry Tracker
 `python telemetrytracker.py`
+
+## Run Telemtry Miner
+1. `python telemetryminer.py`
+2. Input filtered mouse events file
+
+## Run Telemtry Compressor
+1. `python telemetrycompressor.py`
+2. Input mined mouse events file
 
 ## Quit
 Press ' two times
