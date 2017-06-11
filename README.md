@@ -1,5 +1,5 @@
 # TelemetryTracker
-This project was a work done as a part of my MSc Thesis
+This work represents the game telemetry analysis done as a part of my MSc Thesis
 
 **The TelemetryTracker.py runs on Windows and requires Python 3.6 and is an altered version of [Mouse-n-Key](https://github.com/pablotheissen/Mouse-n-Key)**
 
@@ -17,6 +17,14 @@ The Telemetry Tracker tracks mouse and keyboard events and logs them into csv fi
 
 ### Quit
 Press ' two times
+
+## Telemetry Analyzer
+The Telemetry Analyzer was used to roughly analyze the events in the game in order to note down when a mouse click happened and map it to a certain choice in the game. The analyzer only gives a rough estimate even though sometimes it's spot on. Therefore, a visual comparison with a screen recording of the vide game is necessary. After the visual comparison, make sure there's an event in the mouse event csv file that backs up your time stamp. 
+
+### Run
+1. `python telemetryanalyzer.py`
+2. Input mouse events csv file, e.g. ./data/7/25022017-144851/00_dump_mouse.csv
+3. Input the start time of the game session
 
 ## Telemetry Miner
 The Telemetry Miner mines the data obtained by the Telemetry Tracker and creates an array including all mouse events that happen 5 seconds before a decisions in the game is made. The miner requires a decision file with timestamps of each decisions. The mined data is logged into a txt file.
