@@ -41,40 +41,8 @@ DIALOGUE_ARRRAY = [
 ]
 
 # Dialogue time distibution in seconds
-DIALOGUE_DISTRIBUTION = [
-    145,
-    44,
-    33,
-    21,
-    0,
-    18,
-    0,
-    26,
-    23,
-    23,
-    51,
-    50,
-    0,
-    44,
-    47,
-    40,
-    52,
-    53,
-    63,
-    0,
-    30,
-    34,
-    0,
-    0,
-    67,
-    39,
-    22,
-    60,
-    51,
-    63,
-    0,
-    0
-]
+DIALOGUE_DISTRIBUTION = [145, 44, 33, 21, 0, 18, 0, 26, 23, 23, 51, 50, 0, 44, 47, 40,
+                         52, 53, 63, 0, 30, 34, 0, 0, 67, 39, 22, 60, 51, 63, 0, 0]
 
 def filter_csv():
     """Filter out timecodes before the actual start times"""
