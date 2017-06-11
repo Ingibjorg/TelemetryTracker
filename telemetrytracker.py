@@ -28,19 +28,11 @@ def handler_mouse(event):
         refresh_screen(True)
     elif event.event_type[6:] == 'wheel':
         num_clicks['wheel'] += 1
-        # if event.event_type[11:] == 'left':
     refresh_screen()
 
 def handler_keyboard(event):
     key_events.append(event)
     refresh_screen(True)
-
-def calculate_length_of_mouse_trail():
-    global pts
-    # Length between corners
-    lengths = np.sqrt(np.sum(np.diff(pts, axis=0)**2, axis=1))
-    total_length = np.sum(lengths)
-    return total_length
 
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -115,7 +107,6 @@ def refresh_screen(forced_refresh=False):
         sys.stdout.write("    Middle: {:8.0f}\n".format(num_clicks['middle']))
         sys.stdout.write("     Right: {:8.0f}\n".format(num_clicks['right']))
         sys.stdout.write("     Wheel: {:8.0f}\n".format(num_clicks['wheel']))
-        # sys.stdout.write("  Distance: {:8.0f}\n".format(calculate_length_of_mouse_trail()))
         if key_events:
             sys.stdout.write("  Last Key: {}\n".format(key_events[-1].key_code_readable.rjust(8, ' ')))
         i = 0

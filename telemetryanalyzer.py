@@ -104,7 +104,6 @@ def get_dialogue(counter, pos, decision_writer):
             event = DecisionEvent('dialogue', DIALOGUE_ARRRAY[counter][pos], row[3])
             decision_events.append(event)
             decision_writer.writerows([evt._asdict() for evt in decision_events])
-            print DIALOGUE_ARRRAY[counter][pos]
             return True
     return False
 
@@ -125,7 +124,6 @@ if __name__ == '__main__':
             last_timestamp = int(START_TIME)
             for row in READER:
                 if 'mouse_down_left' in row[0]:
-                    print row
                     x = int(row[1])
                     y = int(row[2])
                     timestamp = int(row[3])
@@ -134,42 +132,32 @@ if __name__ == '__main__':
                         sys.exit(0)
                     if DIALOGUE_DISTRIBUTION[dialogue_counter] != 0 and (timestamp - last_timestamp > (DIALOGUE_DISTRIBUTION[dialogue_counter] * 1000)):
                         dialogue_counter = dialogue_counter + 1
-                        print last_timestamp
-                        print 'bump to ' + str(dialogue_counter)
                         decision_events = []
                         event = DecisionEvent('dialogue', 'Silence...', row[3]) # Record time of silence
                         decision_events.append(event)
                         WRITER.writerows([evt._asdict() for evt in decision_events])
                         if (timestamp - last_timestamp) < ((DIALOGUE_DISTRIBUTION[dialogue_counter - 1] + 5) * 1000):
                             miss = True
-                            print 'miss'
                             last_timestamp = timestamp # User just missed the time window, let's update timestamp
                     if miss or (last_timestamp > 0 and timestamp - last_timestamp <= 700):
                         # Remove event - double mouse click probably 
-                        print 'removing'
                         timestamp = last_timestamp # Keep old last_timestamp
                     elif buttonlocator.is_top_left_dialogue_button(x, y):
-                        #print 'top left'
                         if get_dialogue(dialogue_counter, 0, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif buttonlocator.is_bottom_left_dialogue_button(x, y):
-                        #print 'bottom left'
                         if get_dialogue(dialogue_counter, 2, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif buttonlocator.is_top_right_dialogue_button(x, y):
-                        #print 'top right'
                         if get_dialogue(dialogue_counter, 1, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif buttonlocator.is_bottom_right_dialogue_button(x, y):
-                        #print 'bottom right'
                         if get_dialogue(dialogue_counter, 3, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif buttonlocator.is_left_dialogue_button(x, y):
-                        #print 'left'
                         if get_dialogue(dialogue_counter, 0, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     elif buttonlocator.is_bottom_right_dialogue_button(x, y):
-                        #print 'right'
                         if get_dialogue(dialogue_counter, 1, WRITER):
                             dialogue_counter = dialogue_counter + 1
                     last_timestamp = timestamp
