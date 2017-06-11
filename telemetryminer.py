@@ -51,7 +51,6 @@ def is_right_dialogue_button(pos_x, pos_y):
 
 def write_events_to_file(events):
     target = open(OUTPUT_FILE, 'a')
-    target.write('Dialogue ' + str(dialogue_counter) + ' events: ' + str(len(events)) + '\n')
     target.write(str(events)) #['click', 'x', 'y', 'overA', 'overB', 'overC', 'overD'])
     target.write('\n')
     target.close()
@@ -77,10 +76,9 @@ def get_mouse_event(click, x, y, ts):
     return [click, x, y, overA, overB, overC, overD, ts]
 
 if __name__ == '__main__':
-    INPUT_CSV = raw_input("Enter csv file name: ")
+    INPUT_CSV = "./data/7/25022017-144851/00_dump_mouse.csv" #raw_input("Enter csv file name: ")
     DECISION_CSV = INPUT_CSV.replace('.csv', '_decisions.csv')
     DIALOGUE_TIMES = []
-    SILENCE_TIMES = []
     OUTPUT_FILE = INPUT_CSV.replace('.csv', '_mined.txt')
     dialogue_counter = 0
     dialogue_events = [] # events per dialogue
@@ -88,8 +86,6 @@ if __name__ == '__main__':
     with open(DECISION_CSV, 'rb') as decision_csvfile:
         DECISION_READER = csv.reader(decision_csvfile, delimiter=';', quotechar='|')
         for row in DECISION_READER:
-            if 'Silence' in row[1]:
-                SILENCE_TIMES.append(int(row[2]))
             DIALOGUE_TIMES.append(int(row[2]))
 
     with open(INPUT_CSV, 'rb') as csvfile:
@@ -104,23 +100,18 @@ if __name__ == '__main__':
                     x = int(row[1])
                     y = int(row[2])
                     ts = int(row[3])
-                if 'mouse_move' in row[0]:
-                    if ts >= DIALOGUE_TIMES[dialogue_counter] - 5000 and ts <= DIALOGUE_TIMES[dialogue_counter]:
+                    if ts > DIALOGUE_TIMES[dialogue_counter]:
+                        dialogue_counter = dialogue_counter + 1
+                        write_events_to_file(dialogue_events)
+                    if ts >= DIALOGUE_TIMES[dialogue_counter] - 5000 and ts < DIALOGUE_TIMES[dialogue_counter]:
                         event = get_mouse_event(0, x, y, ts)
                         dialogue_events.append(event)
-                    elif ts >= DIALOGUE_TIMES[dialogue_counter]:
-                        for silence in SILENCE_TIMES:
-                            if DIALOGUE_TIMES[dialogue_counter] == int(silence):
-                                dialogue_events.append(event)
-                                dialogue_counter = dialogue_counter + 1
-                                write_events_to_file(dialogue_events)
-                                dialogue_events = []
-                if ts == DIALOGUE_TIMES[dialogue_counter]:
-                    click = 0
-                    if 'mouse_down_left' in row[0]:
-                        click = 1
-                    event = get_mouse_event(1, x, y, ts)
-                    dialogue_events.append(event)
-                    dialogue_counter = dialogue_counter + 1
-                    write_events_to_file(dialogue_events)
-                    dialogue_events = []
+                    elif ts == DIALOGUE_TIMES[dialogue_counter]:
+                        click = 0
+                        if 'mouse_down_left' in row[0]:
+                            click = 1
+                        event = get_mouse_event(click, x, y, ts)
+                        dialogue_events.append(event)
+                        dialogue_counter = dialogue_counter + 1
+                        write_events_to_file(dialogue_events)
+                        dialogue_events = []

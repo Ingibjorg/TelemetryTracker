@@ -13,7 +13,7 @@
 
 ## Run Telemtry Miner
 1. `python telemetryminer.py`
-2. Input filtered mouse events file
+2. Input mouse events file
 
 ## Run Telemtry Compressor
 1. `python telemetrycompressor.py`
