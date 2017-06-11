@@ -31,7 +31,7 @@ def get_mouse_event(click, x, y, ts):
     return [click, x, y, overA, overB, overC, overD, ts]
 
 if __name__ == '__main__':
-    INPUT_CSV = "./data/8/25022017-163808/00_dump_mouse.csv" #raw_input("Enter csv file name: ")
+    INPUT_CSV = raw_input("Enter csv file name: ")
     DECISION_CSV = INPUT_CSV.replace('.csv', '_decisions.csv')
     DIALOGUE_TIMES = []
     OUTPUT_FILE = INPUT_CSV.replace('.csv', '_mined.txt')
