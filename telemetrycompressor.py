@@ -153,7 +153,7 @@ def get_mouse_velocity(distance, time):
     return round(distance/time, 2)
 
 if __name__ == '__main__':
-    INPUT_FILE = raw_input("Enter file name: ")
+    INPUT_FILE = "./data/7/25022017-144851/00_dump_mouse_mined.txt" # raw_input("Enter file name: ")
     OUTPUT_FILE = INPUT_FILE.replace('.txt', '_compressed.txt')
     #text_file = "./data/3/23022017-171351/00_dump_mouse_mined.txt"
     INPUT_ARRAY = []
@@ -161,8 +161,10 @@ if __name__ == '__main__':
     with open(INPUT_FILE, "r") as ins:
         for line in ins:
             INPUT_ARRAY.append(eval(line))
-
     for events in INPUT_ARRAY:
-        FIRST_TS = events[0][7]
-        compress_event(events)
+        if events:
+            FIRST_TS = events[0][7]
+            compress_event(events)
+        else:
+            write_event_to_file([])
         
