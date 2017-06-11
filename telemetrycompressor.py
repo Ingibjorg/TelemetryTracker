@@ -16,7 +16,7 @@ from math import sqrt
 # to move) ]
 
 def compress_event(events):
-    """Compress event"""
+    """Return a compressed event"""
     result = []
     last_ts = ""
     last_ts_a = 0
@@ -138,24 +138,26 @@ def compress_event(events):
     write_event_to_file(result)
 
 def write_event_to_file(event):
+    """Write events to a file"""
     target = open(OUTPUT_FILE, 'a')
     target.write(str(event) + '\n')
     target.close()
 
 def get_mouse_distance(last_x, current_x, last_y, current_y):
+    """Return mouse distance"""
     delta_x = last_x - current_x
     delta_y = last_y - current_y
     return sqrt(delta_x**2 + delta_y**2)
 
 def get_mouse_velocity(distance, time):
+    """Return mouse velocity"""
     if time == 0:
         return 0
     return round(distance/time, 2)
 
 if __name__ == '__main__':
-    INPUT_FILE = "./data/7/25022017-144851/00_dump_mouse_mined.txt" # raw_input("Enter file name: ")
+    INPUT_FILE = raw_input("Enter file name: ")
     OUTPUT_FILE = INPUT_FILE.replace('.txt', '_compressed.txt')
-    #text_file = "./data/3/23022017-171351/00_dump_mouse_mined.txt"
     INPUT_ARRAY = []
 
     with open(INPUT_FILE, "r") as ins:
