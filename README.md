@@ -1,4 +1,5 @@
 # TelemetryTracker
+This project was a work done as a part of my MSc Thesis
 
 **The TelemetryTracker.py runs on Windows and requires Python 3.6 and is an altered version of [Mouse-n-Key](https://github.com/pablotheissen/Mouse-n-Key)**
 
