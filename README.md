@@ -1,16 +1,16 @@
 # TelemetryTracker
 This work represents the game telemetry analysis done as a part of my MSc Thesis
 
-**The TelemetryTracker.py runs on Windows and requires Python 3.6 and is an altered version of [Mouse-n-Key](https://github.com/pablotheissen/Mouse-n-Key)**
+**The TelemetryTracker.py runs on Windows only and is an altered version of [Mouse-n-Key](https://github.com/pablotheissen/Mouse-n-Key)**
 
-## Setup Telemetry Tracker
+## Telemetry Tracker
+The Telemetry Tracker tracks mouse and keyboard events and logs them into csv files.
+
+### Setup
 1. Install [Python 3.6](https://www.python.org/downloads/)
 2. python -m pip install numpy
 3. python -m pip install pywin32
 4. python -m pip install PyUserInput
-
-## Telemetry Tracker
-The Telemetry Tracker tracks mouse and keyboard events and logs them into csv files.
 
 ### Run
 `python telemetrytracker.py`
